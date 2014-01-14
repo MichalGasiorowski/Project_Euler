@@ -34,7 +34,7 @@ def generateSieve(num):
                 if numbers[i] == 1:
                         i += 1
                         continue
-                if numbers[i] ==0: # This is a prime number
+                if numbers[i] == 0: # This is a prime number
                         sieve.append(i)
                 if 2*i >= n:
                         i +=1
@@ -107,6 +107,7 @@ def getDivisors(n,sieve):
     return list(factorsSet)
             
 def getAmiableNumbersToN(n):
+    
     maxSieveSize = math.sqrt(n)
     sieve = generateSieve(1.3*maxSieveSize)
     amiableList = []
@@ -118,6 +119,7 @@ def getAmiableNumbersToN(n):
         cacheOfAmiablesFactorSum[num] = sum(divs)
         num +=1
     i=1
+    print("divs", divs)
     while i < n:
         if i in amiableSet:
             i+=1
@@ -132,4 +134,10 @@ def getAmiableNumbersToN(n):
             amiableList.append((i,amToCheck))
         i+=1
     return amiableList,amiableSet, sum(amiableSet)
-        
+
+def main():
+    print(getAmiableNumbersToN(10000))
+if __name__== "__main__":
+    main()
+
+
