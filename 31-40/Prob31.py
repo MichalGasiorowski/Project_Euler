@@ -9,38 +9,50 @@
 ##
 ##How many different ways can £2 be made using any number of coins?
 from time import clock
+from functools import lru_cache
 
-
-
+sol_count = 0
 
 def available_coins():
-    return sorted([1,2,5,10,20,50,100,200], reverse=True)
+    return tuple(sorted([1,2,5,10,20,50,100,200]))
     #return sorted([1,2,5], reverse=True)
 
 def goal_sum():
     return 200
 
-def calculate_ways_to_get(av_coins, goal, current_tuple, overall_solution):
+def calculate_ways_to_get(av_coins, goal, current_solution, overall_set):
     """av_coins sorted descending"""
+    global sol_count
     if (goal == 0):
-        overall_solution.add(current_tuple)
+        overall_set.add(current_solution)
+        sol_count += 1
         return
     if(goal < 0 or len(av_coins) == 0):
         return
-    calculate_ways_to_get(av_coins, goal - av_coins[0], current_tuple + (av_coins[0],), overall_solution)
-    calculate_ways_to_get(av_coins[1:], goal, current_tuple, overall_solution)
-    
-    
+    calculate_ways_to_get(av_coins, goal - av_coins[-1], current_solution + (av_coins[-1],), overall_set)
+    calculate_ways_to_get(av_coins[:-1], goal, current_solution, overall_set)
 
+
+@lru_cache(maxsize=None)    
+def count_ways(av_coins, goal):
+    if (goal == 0):
+        #overall_set.add(current_solution)
+        #sol_count += 1
+        return 1
+    if(goal < 0 or len(av_coins) == 0):
+        return 0
+    return count_ways(av_coins, goal - av_coins[-1]) + count_ways(av_coins[:-1], goal)
+    
 def main():
+    global sol_count
     start = clock()
     coins = available_coins()
     over_sol = set()
     goal = goal_sum()
-    calculate_ways_to_get(coins, goal, (), over_sol)
+    all_ways = count_ways(coins, goal)
     #print ("All solutions: " , sorted(over_sol, reverse=True))
-    print ("\nNumber of solutions: " , len(over_sol))
-    print ('calculate_ways_to_get clocked at', 'Time: ', str(clock() - start)+'s')
+    print ("\nNumber of solutions: " , all_ways)
+    print ('all_ways clocked at', 'Time: ', str(clock() - start)+'s')
     None
 
 if __name__ == "__main__":
