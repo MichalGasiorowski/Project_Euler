@@ -15,7 +15,7 @@ sol_count = 0
 
 def available_coins():
     return tuple(sorted([1,2,5,10,20,50,100,200]))
-    #return sorted([1,2,5], reverse=True)
+
 
 def goal_sum():
     return 200
@@ -36,8 +36,6 @@ def calculate_ways_to_get(av_coins, goal, current_solution, overall_set):
 @lru_cache(maxsize=None)    
 def count_ways(av_coins, goal):
     if (goal == 0):
-        #overall_set.add(current_solution)
-        #sol_count += 1
         return 1
     if(goal < 0 or len(av_coins) == 0):
         return 0
@@ -53,7 +51,8 @@ def main():
     #print ("All solutions: " , sorted(over_sol, reverse=True))
     print ("\nNumber of solutions: " , all_ways)
     print ('all_ways clocked at', 'Time: ', str(clock() - start)+'s')
-    None
+    print(count_ways.cache_info())
+    
 
 if __name__ == "__main__":
     main()
