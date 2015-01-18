@@ -5,6 +5,9 @@ import com.goose.util.EratosthenesSieve;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
  * Created by Michal on 1/18/2015.
@@ -33,6 +36,7 @@ public class Problem35 {
         for(int candidate = 2; candidate < maxNum; candidate++) {
             int[] rotations = BigIntegerUtils.rotations(candidate);
             broke = false;
+
             for(int rotation : rotations) {
                 if(erSieve.isComposite(rotation)) { broke = true; break; }
             }

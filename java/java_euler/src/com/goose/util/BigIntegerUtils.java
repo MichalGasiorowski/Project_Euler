@@ -95,6 +95,20 @@ public class BigIntegerUtils {
         return ret;
     }
 
+    public static boolean isPalindrome(int num) {
+        if(num < 10 && num > -10) return true;
+
+        int[] digits = getDigits(num);
+
+        for(int i = 0; i<digits.length/2; i++) {
+            if(digits[i] != digits[digits.length - 1 - i]) return false;
+        }
+
+        return true;
+    }
+
+
+
 
 
 }
