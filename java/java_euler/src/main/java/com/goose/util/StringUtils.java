@@ -15,4 +15,40 @@ public class StringUtils {
 
         return true;
     }
+
+    public static boolean isPandigital(String s) {
+        for(int i=0; i < s.length(); i++) {
+            if(s.indexOf(s.charAt(i), i+1) != -1) return false;
+        }
+        return true;
+    }
+
+    public static boolean isPandigital(long num) {
+        return isPandigital(String.valueOf(num));
+    }
+
+    public static boolean isPandigital(int num) {
+        return isPandigital(String.valueOf(num));
+    }
+
+    public static boolean areDisjoint(String s1, String s2) {
+        if(s1 == null || s2 == null) return true;
+        for(int i=0; i< s1.length(); i++) {
+            if(s2.indexOf(s1.charAt(i)) != -1) return false;
+        }
+        return true;
+    }
+
+    public static boolean differentDigits(int a, int b) {
+        return areDisjoint(String.valueOf(a), String.valueOf(b));
+    }
+
+    public static boolean allDifferentDigits(long a, long b) {
+        return areDisjoint(String.valueOf(a), String.valueOf(b));
+    }
+
+    public static int numberOfDigits(int a, int b, int c) {
+        return String.valueOf(a).length() + String.valueOf(b).length() + String.valueOf(c).length();
+    }
+
 }
