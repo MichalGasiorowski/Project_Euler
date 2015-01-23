@@ -5,6 +5,15 @@ package com.goose.util;
  */
 public class IntUtils {
 
+    public static boolean isInteger(String string) {
+        try {
+            Integer.valueOf(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static int[] rotations(int num) {
 
         String s = "" + num;

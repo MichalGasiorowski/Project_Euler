@@ -51,4 +51,13 @@ public class StringUtils {
         return String.valueOf(a).length() + String.valueOf(b).length() + String.valueOf(c).length();
     }
 
+    public static boolean is12AndLastSecLastDistinct(String s) {
+        if(s == null || s.length() < 2) return true;
+        int first = 0;
+        int last = s.length() - 1;
+
+        return s.charAt(first) != s.charAt(first + 1) && s.charAt(last) != s.charAt(last - 1);
+
+    }
+
 }
