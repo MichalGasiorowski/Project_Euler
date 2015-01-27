@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  */
 
 /*
-
+Pandigital multiples
 Take the number 192 and multiply it by each of 1, 2, and 3:
 
 192 × 1 = 192
